@@ -1,0 +1,61 @@
+* Ideasheaf
+
+#+begin_quote
+    「理想層」
+#+end_quote
+
+*Ideasheaf* is a collection of notes, exercises, and miscellaneous writings in mathematics and computer science. Inspired by the [[https://stacks.math.columbia.edu][Stacks project]] and [[https://ncatlab.org][nLab]], it aims to serve as a structured and cross-referenced wiki — primarily for private use, but shared as open knowledge.
+
+The name /ideasheaf/ is drawn from the mathematical notion of the [[https://ncatlab.org/nlab/show/sheaf+of+ideals][ideal sheaf]].
+
+** Table of (Attempted) Contents
+
+Currently, the content is largely focused on foundations and prerequisites for arithmetic geometry.
+
+*** 1.Ø'
+
+#+begin_quote
+    You Are (Not) Alone
+#+end_quote
+
+- Sets  
+- Mathematical Logic  
+- Categories  
+- Topology  
+- Linear Algebra  
+- Calculus  
+- Differential Equations  
+- Real and Complex Analysis  
+- Groups and Representations  
+- Rings and Commutative Algebra  
+- Fields and Galois Theory  
+- Homological Algebra  
+
+*** 2.Ø'
+
+#+begin_quote
+    You Can (Not) Advance
+#+end_quote
+
+- Complex Geometry  
+- Algebraic Geometry  
+
+*** 3.Ø'
+
+#+begin_quote
+    You Can (Not) Redo
+#+end_quote
+
+To be filled as the journey continues...
+
+*** 3.Ø + 1.Ø'
+
+#+begin_quote
+    Thrice Upon a Time
+#+end_quote
+
+** License
+
+All contents are licensed under the [[http://creativecommons.org/licenses/by-sa/4.0/][Creative Commons Attribution-ShareAlike 4.0 International License]].
+
+[[http://creativecommons.org/licenses/by-sa/4.0/][file:https://i.creativecommons.org/l/by-sa/4.0/88x31.png]]
