@@ -3,4 +3,5 @@
 This is *Ideasheaf* built with [[https://github.com/rasendubi/uniorg][uniorg]] and [[https://nextjs.org/][Next.js]].
 
 * Learn more
-- [[file:./math/calculus.org][Calculus]]
+- [[file:math/calculus.org][Calculus]]
+- [[file:math/linalg.org][Linear Algebra]]
