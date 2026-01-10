@@ -89,7 +89,7 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
 
   if (!post) return notFound()
 
-  return { title: post.data.title || post.basename }
+  return { title: "Ideasheaf | " + (post.data.title || post.basename) }
 }
 
 // Generate static params
