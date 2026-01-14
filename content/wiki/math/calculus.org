@@ -4,20 +4,20 @@
 
 * The Real Numbers
 
-In calculus, our main working space is the field of real numbers $\mathbb{R}$, it is an ordered number field obtained as the completion of $\mathbb{Q}$ with respect to the standard Euclidean absolute value.
+In calculus, our main working space is the field of real numbers $bb(R)$, it is an ordered number field obtained as the completion of $bb(Q)$ with respect to the standard Euclidean absolute value.
 
 ** Completeness
 
-If an absolute value satisfies the stronger triangle inequality $|x + y| \leq \max (|x|, |y|)$ for all $x$ and $y$, then $|x|$ is called an /ultrametric/ or /non-Archimedean/ absolute value, otherwise an /Archimedean/ absolute value. The standard Euclidean absolute value is an Archimedean one and will impose the following Archimedean property on $\mathbb{R}$,
+If an absolute value satisfies the stronger triangle inequality $|x + y| <= max(|x|, |y|)$ for all $x$ and $y$, then $|x|$ is called an /ultrametric/ or /non-Archimedean/ absolute value, otherwise an /Archimedean/ absolute value. The standard Euclidean absolute value is an Archimedean one and will impose the following Archimedean property on $bb(R)$,
 
 #+begin_theorem
-  For every positive $x, y \in \mathbb{R}$, there exists an $N \in \mathbb{N}$ such that $nx > y$.
+  For every positive $x, y in bb(R)$, there exists an $N in bb(N)$ such that $n x > y$.
 #+end_theorem
   
-The completeness of $\mathbb{R}$ in terms of that every Cauchy sequence converges could be reworded as
+The completeness of $bb(R)$ in terms of that every Cauchy sequence converges could be reworded as
 
 #+begin_theorem
-  - *Nested intervals theorem.* Let $\{ I_n \}$ be intervals nested by inclusions, i.e. $I_1 \supset I_2 \supset \cdots$, then there is one and only one point contains in $\bigcap_{n=1}^\infty I_n$.
+  - *Nested intervals theorem.* Let ${ I_n }$ be intervals nested by inclusions, i.e. $I_1 supset I_2 supset dots.c$, then there is one and only one point contained in $inter.big_(n=1)^infinity I_n$.
 
   Moreover, if assuming the Archimedean property,
 
@@ -25,11 +25,11 @@ The completeness of $\mathbb{R}$ in terms of that every Cauchy sequence converge
     
   - *Monotone convergence theorem.* Any monotonic sequence converges.
     
-  - *Heine-Borel theorem.* $E \in \mathbb{R}$ is closed and bounded iff it is compact.
+  - *Heine-Borel theorem.* $E in bb(R)$ is closed and bounded iff it is compact.
     
   - *Bolzano-Weierstrass theorem.* Any bounded sequence contains a convergent subsequence.
 
-  - *The intermediate value theorem.* Let $f: [a, b] \to \mathbb{R}$, if $f(a) f(b) < 0$, then $\exists c \in [a, b]$ such that $f(c) = 0$.
+  - *The intermediate value theorem.* Let $f: [a, b] arrow.r bb(R)$, if $f(a) f(b) < 0$, then $exists c in [a, b]$ such that $f(c) = 0$.
 #+end_theorem
    
 #+begin_proof
@@ -40,18 +40,18 @@ The completeness of $\mathbb{R}$ in terms of that every Cauchy sequence converge
 
 Recall that in categorical language, a limit captures the essentials of constructions such as products, pullbacks and inverse limits, and is defined as a cone of a diagram satisfying a particular universal property.
 
-Meanwhile, the limit of a sequence described here generalize very well in point-set topology to the idea of the limit of a filter.
+Meanwhile, the limit of a sequence described here generalizes very well in point-set topology to the idea of the limit of a filter.
 
 ** The Limit of a Sequence
 
-As a special case of functions, a /sequence/ is nothing more than a function over $\mathbb{N}$. The limit of a sequence is defined solely at the point $\infty$, as only around $\infty$ there is a well-defined notion of neighborhood filter (the subset $\mathbb{N}$ has only one limit point under the inherited topology from $\mathbb{R} \cup \{ \infty \}$).
+As a special case of functions, a /sequence/ is nothing more than a function over $bb(N)$. The limit of a sequence is defined solely at the point $infinity$, as only around $infinity$ there is a well-defined notion of neighborhood filter (the subset $bb(N)$ has only one limit point under the inherited topology from $bb(R) union { infinity }$).
 
-The usual definition utilizes the $\varepsilon$ - $N$ language,
+The usual definition utilizes the $epsilon$ - $N$ language,
 
 #+begin_definition
-  A sequence $\{ a_n \}$ is said to converge to $A$, if
+  A sequence ${ a_n }$ is said to converge to $A$, if
 
-  $\forall \varepsilon > 0$, $\exists N > 0$ such that if $n > N$, then $d(a_n, A) < \varepsilon$.
+  $forall epsilon > 0$, $exists N > 0$ such that if $n > N$, then $d(a_n, A) < epsilon$.
 #+end_definition
 
 ** Limits of Functions
@@ -59,14 +59,15 @@ The usual definition utilizes the $\varepsilon$ - $N$ language,
 Limits of functions are a special case of limits of filters.
 
 #+begin_definition
-  $L$ is a limit of $f$ approaching $c$ iff $L$ is a limit of $f(\dot{\mathcal{N}}_c)$.
+  $L$ is a limit of $f$ approaching $c$ iff $L$ is a limit of $f(dot(cal(N))_c)$.
 #+end_definition
 
-In an metrizable space, the definition can be reworded into the usual $\varepsilon$ - $\delta$ language.
+In a metrizable space, the definition can be reworded into the usual $epsilon$ - $delta$ language.
 
 #+begin_definition
   A function $f$ is said to converge to $A$ at $x_0$, if
-  $\forall \varepsilon > 0$, $\exists \delta > 0$ such that if $d(x, x_0) < \delta$, then $d(f(x), L) < \varepsilon$.
+
+  $forall epsilon > 0$, $exists delta > 0$ such that if $d(x, x_0) < delta$, then $d(f(x), L) < epsilon$.
 #+end_definition
 
 *** Subsequence
@@ -80,4 +81,3 @@ In an metrizable space, the definition can be reworded into the usual $\varepsil
 * Continuity
 * Differentiation
 * Integral
-

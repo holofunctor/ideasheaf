@@ -1,0 +1,35 @@
+#+title: Category Theory
+#+tags: categories
+
+* Categories, Functors, Natural Transformations
+
+* Universal Properties
+
+* Limits and Colimits
+
+* Adjunctions
+
+* Monads and their Algebras
+
+#+begin_definition
+    A *monad* on a category $upright(sans(C))$ consists of
+    - an endofunctor $T: upright(sans(C)) -> upright(sans(C))$
+    - a *unit* natural transformation $eta: 1_upright(sans(C)) => T$ , and
+    - a *multiplication* natural transformation $mu: T^2 => T$,
+    So that the following diagrams commute in $upright(sans(C))^upright(sans(C))$: 
+
+    #+begin_src math
+    #import "@preview/fletcher:0.5.8" as fletcher: diagram, node, edge
+
+    #grid(
+        columns: 2,
+        column-gutter: 5em,
+        inset: (top: 2.5pt, bottom: 2.5pt),
+        diagram($ T^3 edge(T mu, =>) edge("d", mu T, =>, #right) & T^2 edge("d", mu, =>, #left)\
+            T^2 edge(mu, =>, #right) & T $),
+        diagram($ T edge(eta T, =>) edge("dr", 1_T, =>, #right) & T^2 edge("d", mu, =>) 
+            & T edge("l", T eta, =>) edge("dl", 1_T, =>, #left)\
+            & T & $)
+    )
+    #+end_src
+#+end_definition

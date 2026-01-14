@@ -9,11 +9,11 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@myriaddreamin/rehype-typst": "^0.7.0-rc2",
     "next": "16.1.1",
     "orgast-util-visit-ids": "^1.1.0",
     "react": "19.2.3",
     "react-dom": "19.2.3",
-    "rehype-katex": "^7.0.1",
     "rehype-react": "^8.0.0",
     "rehype-stringify": "^10.0.1",
     "rehype-url-inspector": "^2.0.2",

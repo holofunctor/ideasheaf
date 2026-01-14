@@ -5,7 +5,7 @@ import uniorgExtractKeywords from 'uniorg-extract-keywords'
 import { uniorgSlug } from 'uniorg-slug'
 import { visitIds } from 'orgast-util-visit-ids'
 
-import rehypeKatex from 'rehype-katex'
+import rehypeTypst from '@myriaddreamin/rehype-typst'
 import rehypeShiki from '@shikijs/rehype'
 
 import type { Node } from 'unist'
@@ -61,7 +61,7 @@ const processor = unified()
       dark: 'min-dark',
     },
   })
-  .use(rehypeKatex)
+  .use(rehypeTypst)
   .use(toJson)
 
 // Process an Org file into HAST

@@ -25,6 +25,10 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+svg {
+  display: inline-block;
+}
+
 .katex {
   font-size: 1em;
 }
