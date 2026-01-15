@@ -17,6 +17,10 @@
     --background: #0a0a0a;
     --foreground: #ededed;
   }
+
+  svg.typst-doc {
+    filter: invert(100%)
+  }
 }
 
 body {
@@ -25,10 +29,24 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
-svg {
-  display: inline-block;
-}
+@layer base {
+  h1 {
+    @apply text-2xl font-bold;
+  }
 
-.katex {
-  font-size: 1em;
+  h2 {
+    @apply text-xl font-bold;
+  }
+
+  h3 {
+    @apply text-lg font-bold;
+  }
+
+  ul {
+    @apply list-inside list-disc;
+  }
+
+  svg.typst-doc {
+    @apply inline-block;
+  }
 }
