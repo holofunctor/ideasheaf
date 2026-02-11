@@ -33,3 +33,79 @@
     )
     #+end_src
 #+end_definition
+
+Any adjunction
+\(upright(sans(C))
+#box(baseline: 1.2em, align(center)[#stack(dir: ttb, spacing: -1.25em, $script(F)$, box(inset: (bottom: -0.15em), $-->$), $sscript(tack.t)$, $<--$, $script(G)$)])
+upright(sans(D)) \)
+gives rise to a monad on the category $upright(sans(C))$ serving as the domain of the left adjoint, with the endofunctor $T$ defined to be $G F$, the unit $eta: 1_upright(sans(C)) => G F$, and the multiplication $G epsilon.alt F: G F G F => G F$.
+
+#+begin_definition
+    Let $upright(sans(C))$ be a category with a monad $(T, eta, mu)$. The *Eilenberg-Moore category* for $T$ or the *category of $T$-algebras* is given by:
+    - objects are pairs $(A in upright(sans(C)), a: T A -> A)$, so that the diagrams
+    #+begin_src math
+    #import "@preview/fletcher:0.5.8" as fletcher: diagram, node, edge
+
+    #grid(
+        columns: 2,
+        column-gutter: 5em,
+        inset: (top: 2.5pt, bottom: 2.5pt),
+        diagram($ A edge(eta_A, ->) edge("dr", 1_A, ->, #right) & T A edge("d", a, ->, #left)\
+            & A $),
+        diagram($ T^2 A edge(mu_A, ->) edge("d", T a, ->, #right) & T A edge("d", a, ->, #left)\ 
+            T A edge(a, ->, #right) & A $)
+    )
+    #+end_src
+    commute in $upright(sans(C))$, and
+    - morphisms $f: (A, a) -> (B, b)$ are given by $f: A -> B$ in $upright(sans(C))$ so that the square
+    #+begin_src math
+    #import "@preview/fletcher:0.5.8" as fletcher: diagram, node, edge
+
+    #grid(
+        columns: 1,
+        column-gutter: 5em,
+        inset: (top: 2.5pt, bottom: 2.5pt),
+        diagram($ T A edge(T f, ->) edge("d", a, ->, #right) & T B edge("d", b, ->, #left)\ 
+            A edge(f, ->, #right) & A $)
+    )
+    #+end_src
+    commutes.
+#+end_definition
+
+#+begin_definition
+    Let $upright(sans(C))$ be a category with a monad $(T, eta, mu)$. The *Kleisli category* has the same objects as $upright(sans(C))$ but a morphism $A -> B$ is a morphism $A -> T B$ in $upright(sans(C))$,
+    where the unit $eta_A: A -> T A$ defines the identity and the multiplication defines the composite of $f: A -> T B$ and $g: B -> T C$ as $A stretch(-->)^(f) T B stretch(-->)^(T g) T^2 C stretch(-->)^(mu_C) T C$.
+#+end_definition
+
+#+begin_proposition
+    The Kleisli category $upright(sans(C))_T$ is initial in $upright(sans("Adj"))_T$ and the Eilenberg-Moore category $upright(sans(C))^T$ is terminal. That is, for any adjunction $F tack.l U$ including the monad $T$ on $upright(sans(C))$,
+    there exist unique functors
+
+    #+begin_src math
+    #import "@preview/fletcher:0.5.8" as fletcher: diagram, node, edge
+    #grid(
+        columns: 1,
+        column-gutter: 5em,
+        inset: (top: 2.5pt, bottom: 2.5pt),
+        diagram({
+            let (K, D, E, C) = ((-1, 0), (0, 0), (1, 0), (0, 1)) 
+            node(K, $upright(sans(C))_T$)
+            node(D, $upright(sans(D))$)
+            node(E, $upright(sans(C))^T$)
+            node(C, $upright(sans(C))$)
+            edge(K, D, text(gray)[$script(exists ! J)$], "-->", stroke: gray)
+            edge(D, E, text(gray)[$script(exists ! K)$], "-->", stroke: gray)
+            edge(K, C, $script(U_T)$, "->", label-pos: 0.33, label-sep: 0pt, shift: 3pt) 
+            edge(C, K, $script(F_T)$, "->", label-side: left, label-pos: 0.67, label-sep: 0pt, shift: 3pt) 
+            node((-0.6, 0.4), rotate(-45deg)[$sscript(tack.l)$])
+            edge(C, D, $script(U)$, "->", shift: 3pt)
+            edge(D, C, $script(F)$, "->", shift: 3pt)
+            node((0, 0.5), $sscript(tack.l)$)
+            edge(C, E, $script(F^T)$, "->", label-pos: 0.67, label-sep: 0pt, shift: 3pt) 
+            edge(E, C, $script(U^T)$, "->", label-side: left, label-pos: 0.33, label-sep: 0pt, shift: 3pt) 
+            node((0.6, 0.4), rotate(45deg)[$sscript(tack.l)$])
+        })
+    )
+    #+end_src
+    commuting with the left and right adjoints.
+#+end_proposition
