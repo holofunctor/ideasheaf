@@ -13,6 +13,7 @@ export type Post = VFile & {
     excerpt: string
     content: string
     toc?: boolean
+    tags: string
     preview?: boolean
     ids?: Record<string, string>
     links?: Set<string>

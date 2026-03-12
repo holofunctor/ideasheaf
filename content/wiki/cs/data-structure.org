@@ -1,6 +1,8 @@
 #+title: Data Structure
 #+author: Holofunctor   
+#+excerpt: This is an example excerpt for the data structure page.
 #+date: <2026-03-03, Tue>
+#+tags: cs foundation
 
 * Data Structure
 
