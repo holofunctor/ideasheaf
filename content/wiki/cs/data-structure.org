@@ -1,6 +1,8 @@
 #+title: Data Structure
 #+author: Holofunctor   
+#+excerpt: This is an example excerpt for the data structure page.
 #+date: <2026-03-03, Tue>
+#+tags: cs foundation
 
 * Data Structure
 
@@ -15,221 +17,47 @@ In this document we recap some basic data structures, choosing the ~C++~ languag
 ** Data Structures
 
 *** List
-**** array, multi-dimensional array
 
-A *dynamic array* is a random access, variable-size list data structure that allows elements to be added or removed.
-It overcome a limit of static arrays, which have a fixed capacity that needs to be specified at allocation.
+A *list* (or *sequence*) is a finite, ordered collection of elements from a pre-defined universe $Sigma$. The set of all finite lists over $Sigma$ is $Sigma^* := { Sigma^n | n in NN }$.
 
-#+name: array.hpp
-#+begin_src cpp
-    #pragma once
-    #include <cassert>
-    #include <limits>
-    #include <stdexcept>
-    #include <utility>
+The term list is also used for several concrete data structures that can be used to implement abstract lists, especially linked lists and arrays.
 
-    namespace idsf {
+**** Array
 
-    template<typename T>
-    class array {
-    public:
-        using value_type = T;
-        using size_type  = std::size_t;
-        using pointer    = T*;
+An *array* is a random-access data structure that implements the list ADT. In most programming languages, arrays are stored in contiguous memory with uniform element size.
 
-        // member functions
-        // constructors
-        array() noexcept : _data(nullptr), _sz(0), _cap(0) {}
+Modern arrays are typically implemented dynamically. They overcome the fixed capacity of static arrays by resizing the underlying buffer—usually doubling its size—when full and copying existing elements.
 
-        array(size_type n, const T& v)
-            : _data(new T[n]), _sz(n), _cap(n) {
-            for (size_type i = 0; i < n; ++i)
-                _data[i] = v;
-        }
+#+begin_src julia
+    function reserve(new_capacity):
+        new_buffer <- new buffer of size `new_cap` 
+        for i <- 0 to size - 1 do:
+            new_buffer[i] <- buffer[i]
+        end
+        buffer <- new_buffer
+        capacity <- new_capacity
 
-        array(const array& o)
-            : _data(new T[o._cap]), _sz(o._sz), _cap(o._cap) {
-            for (size_type i = 0; i < _sz; ++i)
-                _data[i] = o._data[i];
-        }
-
-        array(array&& o) noexcept
-            : _data(o._data), _sz(o._sz), _cap(o._cap) {
-            o._data = nullptr;
-            o._sz = o._cap = 0;
-        }
-
-        // destructor
-        ~array() { delete[] _data; }
-
-        array& operator=(const array& o) {
-            if (this == &o) return *this;
-
-            pointer _p = new T[o._cap];
-            for (size_type i = 0; i < o._sz; ++i)
-                _p[i] = o._data[i];
-
-            delete[] _data;
-            _data = _p;
-            _sz = o._sz;
-            _cap = o._cap;
-            return *this;
-        }
-
-        // element access
-        T& operator[](size_type i) { assert(i < _sz); return _data[i]; }
-        const T& operator[](size_type i) const { assert(i < _sz); return _data[i]; }
-
-        T& front() { assert(_sz); return _data[0]; }
-        T& back()  { assert(_sz); return _data[_sz - 1]; }
-
-        const T& front() const { assert(_sz); return _data[0]; }
-        const T& back()  const { assert(_sz); return _data[_sz - 1]; }
-
-        pointer begin() { return _data; }
-        pointer end()   { return _data + _sz; }
-
-        const pointer begin() const { return _data; }
-        const pointer end()   const { return _data + _sz; }
-
-        // capacity
-        bool empty() const { return _sz == 0; }
-        size_type size() const { return _sz; }
-        size_type capacity() const { return _cap; }
-
-        size_type max_size() const {
-            return std::numeric_limits<size_type>::max();
-        }
-
-        void reserve(size_type n) {
-            if (n <= _cap) return;
-            if (n > max_size())
-                throw std::length_error("array::reserve");
-
-            pointer _p = new T[n];
-            for (size_type i = 0; i < _sz; ++i)
-                _p[i] = std::move(_data[i]);
-
-            delete[] _data;
-            _data = _p;
-            _cap = n;
-        }
-
-        // modifiers
-        void clear() { _sz = 0; }
-
-        void insert(size_type i, const T& v) {
-            assert(i <= _sz);
-            if (_sz == _cap)
-                reserve(_cap == 0 ? 1 : _cap * 2); // growth factor = 2
-
-            for (size_type j = _sz; j > i; --j)
-                _data[j] = _data[j - 1];
-
-            _data[i] = v;
-            ++_sz;
-        }
-
-        void erase(size_type i) {
-            assert(i < _sz);
-            for (size_type j = i; j + 1 < _sz; ++j)
-                _data[j] = _data[j + 1];
-            --_sz;
-        }
-
-        void push_back(const T& v) { insert(_sz, v); }
-
-        void pop_back() { assert(_sz); --_sz; }
-
-        void resize(size_type n, const T& v = T()) {
-            if (n > _sz) {
-                reserve(n);
-                while (_sz < n)
-                    push_back(v);
-            } else {
-                while (_sz > n)
-                    pop_back();
-            }
-        }
-
-        void swap(array& o) noexcept {
-            std::swap(_data, o._data);
-            std::swap(_sz, o._sz);
-            std::swap(_cap, o._cap);
-        }
-
-    private:
-        pointer _data;
-        size_type _sz;
-        size_type _cap;
-    };
-
-    } // namespace idsf
 #+end_src
 
-Note that we by no means intend to replicate the implementation in the STL using mechanisms like allocator, adaptor etc. but a barely functional version
-to demonstrate the idea behind the design of the structures. 
+Then in ~append~ and ~insert~:
 
-Dynamic arrays are a common example when teaching amortized analysis. As $n$ elements are inserted, the capacities form a geometric progression. 
-Expanding the array by any constant proportion $a$ ensures that inserting $n$ elements takes $O(n)$ time overall, meaning that each insertion takes amortized constant time.
+#+begin_src julia
+    if size = capacity:
+        reserve(capacity * 2)
+#+end_src
+
+Dynamic arrays are a common example when teaching amortized analysis. Consider performing $n$ insertions starting from capacity $m$, the total cost of copying elements during all resizes is
+$m sum_(i=1)^(k) 2^i < 2 dot.op 2 (n + m) = Theta (n)$. Dividing by $n$ operations gives that each insertion takes amortized constant time.
 
 The algorithms one may concern regarding arrays are mainly searching and sorting, which will be covered in [Algorithms/Sorting](./algorithms#sorting).
 
-**** linked list
+**** Linked List
 
-We implement `list` as a circular doubly-linked list with a sentinel node.
+A *linked list* is another implementation of the list ADT such that modifications are $O(1)$ but queries are $O(n)$.
 
-#+begin_src cpp
-    #pragma once
-    #include <cassert>
-    #include <limits>
-    #include <stdexcept>
-    #include <utility>
+We implement ~list~ as a singly-linked list without any /sentinel/ (or /dummy/) nodes. 
 
-    namespace idsf {
-
-    template<typename T>
-    class list {
-    private:
-        struct node {
-            T value;
-            node *prev;
-            node *next;
-        };
-
-        node sentinel;
-
-    public:
-        // member functions
-        // constructors
-        list() noexcept : { sentinel.prev = sentinel.next = &sentinel; } 
-
-        // destructor
-        ~list() { while (!empty()) erase(begin()); }
-
-        bool empty() { return sentinel.next == &sentinel; }
-        
-        node *begin() { return sentinel.next; }        
-        node *end() { return &sentinel; }
-
-        // insert before p
-        void insert(node *p, const T& v) {
-            node* n = new node{v, p->prev, p};
-            p->prev->next = n;
-            p->prev = n;
-        }
-
-        // erase at p
-        void erase(node *p) {
-            p->prev->next = p->next;
-            p->next->prev = p->prev;
-            delete n;
-        }
-    } // namespace idsf
-#+end_src
-
-However, in most of the coding exercises, the list is usually singly-linked and only the pointer `*head` to the first node is provided.
-In such case, manipulations need some extra work.
+There are variants of circular, doubly-linked lists with one or two sentinel nodes, however, in most of the coding exercises, the list is usually singly-linked and only the pointer ~*head~ to the first node is provided. In such case, pointer manipulations need some extra work.
 
 **** stack
 
@@ -239,7 +67,7 @@ A *stack* is a last-in-first-out (LIFO) sequential data structure.
 
 A *queue* is a first-in-first-out (FIFO) sequential data structure.
 
-*** rooted tree
+*** Tree 
 *** hash table
 *** binary search tree
 *** red-black tree

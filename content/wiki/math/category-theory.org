@@ -1,5 +1,5 @@
 #+title: Category Theory
-#+tags: categories
+#+tags: math categories
 
 * Categories, Functors, Natural Transformations
 
