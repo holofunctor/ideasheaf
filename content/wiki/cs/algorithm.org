@@ -1,0 +1,133 @@
+#+title: Algorithm 
+#+author: Holofunctor   
+#+excerpt: This is an example excerpt for the algorithm page.
+#+date: <2026-03-03, Tue>
+#+tags: cs foundation
+
+* Data Structure
+
+
+
+* Time Complexity
+
+* Divide-and-conquer
+
+* Searching
+
+** Binary Search
+
+Find in [left, right]:
+
+#+begin_src cpp
+    template<typename T>
+    int binSearch(vector<T> arr, T const &e) {
+        int left = 0;
+        int right = arr.size() - 1; 
+
+        while (left <= right) {
+            int mid = left + (right - left) / 2
+            if (arr[mid] == e)
+                return mid;
+            else if (arr[mid] > e) 
+                right = mid - 1;
+            else if (arr[mid] < e) 
+                left = mid + 1;
+        }
+        return -1;
+    }
+#+end_src
+
+Or find in [left, right):
+
+#+begin_src cpp
+    template<typename T>
+    int binSearch(vector<T> arr, T const &e) {
+        int left = 0;
+        int right = arr.size();
+
+        while (left < right) {
+            int mid = left + (right - left) / 2
+            if (arr[mid] == e)
+                return mid;
+            else if (arr[mid] > e) 
+                right = mid;
+            else if (arr[mid] < e) 
+                left = mid + 1;
+        }
+        return -1;
+    }
+#+end_src
+
+*** Variants of Binary Search
+
+The first element equals target:
+
+#+begin_src cpp
+    template<typename T>
+    int binSearch(vector<T> arr, T const &e) {
+        int left = 0;
+        int right = arr.size() - 1;
+
+        while (left <= right) {
+            int mid = left + (right - left) / 2
+            if (arr[mid] >= e) // continue in left subarray when equal
+                right = mid - 1;
+            else
+                left = mid + 1;
+        }
+
+        return (left < arr.size() && arr[left] == e) ? left : -1;
+    }
+#+end_src
+
+The last element equals target:
+
+#+begin_src cpp
+    template<typename T>
+    int binSearch(vector<T> arr, T const &e) {
+        int left = 0;
+        int right = arr.size() - 1;
+
+        while (left <= right) {
+            int mid = left + (right - left) / 2
+            if (arr[mid] > e) 
+                right = mid - 1;
+            else // continue in right subarray when equal
+                left = mid + 1;
+        }
+
+        return (right >= 0 && arr[right] == e) ? right : -1;
+    }
+#+end_src
+
+*** Fibonacci Search
+
+Optimization of binary search in coefficient.
+
+* Sorting
+
+** Bubble Sort (Array)
+
+** Merge Sort (Array, Linked List)
+
+** Insertion Sort (Linked List)
+
+** Selection Sort (Linked List)
+
+** Bucket Sort (Hash Table)
+
+*** Radix Sort
+
+** Heap Sort
+
+** Quick Sort
+
+** Shell Sort
+
+* greedy algorithm
+* dynamic programming
+* Fast Fourier Transformation
+* string matching
+    1. Rabin-Karp algorithm
+    2. automata
+    3. KMP

@@ -4,25 +4,17 @@
 #+date: <2026-03-03, Tue>
 #+tags: cs foundation
 
-* Data Structure
-
 In this document we recap some basic data structures, choosing the ~C++~ language is out of a sense of nostalgia.
 
-** Time Complexity
+* List
 
-** Divide-and-conquer
+A *list* (or *sequence*) is a finite, ordered collection of elements from a pre-defined set $Sigma$. 
 
-** Sorting
-
-** Data Structures
-
-*** List
-
-A *list* (or *sequence*) is a finite, ordered collection of elements from a pre-defined universe $Sigma$. The set of all finite lists over $Sigma$ is $Sigma^* := { Sigma^n | n in NN }$.
+The set of all finite lists over $Sigma$ is $Sigma^* := { Sigma^n|n in NN }$.
 
 The term list is also used for several concrete data structures that can be used to implement abstract lists, especially linked lists and arrays.
 
-**** Array
+** Array
 
 An *array* is a random-access data structure that implements the list ADT. In most programming languages, arrays are stored in contiguous memory with uniform element size.
 
@@ -49,9 +41,9 @@ Then in ~append~ and ~insert~:
 Dynamic arrays are a common example when teaching amortized analysis. Consider performing $n$ insertions starting from capacity $m$, the total cost of copying elements during all resizes is
 $m sum_(i=1)^(k) 2^i < 2 dot.op 2 (n + m) = Theta (n)$. Dividing by $n$ operations gives that each insertion takes amortized constant time.
 
-The algorithms one may concern regarding arrays are mainly searching and sorting, which will be covered in [Algorithms/Sorting](./algorithms#sorting).
+The algorithms one may concern regarding arrays are mainly searching and sorting, which will be covered in [[./algorithms#sorting]].
 
-**** Linked List
+** Linked List
 
 A *linked list* is another implementation of the list ADT such that modifications are $O(1)$ but queries are $O(n)$.
 
@@ -59,22 +51,65 @@ We implement ~list~ as a singly-linked list without any /sentinel/ (or /dummy/) 
 
 There are variants of circular, doubly-linked lists with one or two sentinel nodes, however, in most of the coding exercises, the list is usually singly-linked and only the pointer ~*head~ to the first node is provided. In such case, pointer manipulations need some extra work.
 
-**** stack
+** Stack
 
 A *stack* is a last-in-first-out (LIFO) sequential data structure.
 
-**** queue
+*** Applications
+
+**** Number System Conversion
+
+**** Stack Permutation
+
+**** Parentheses Matching
+
+**** Backtracking
+
+- Eight queens puzzle
+- Maze pathfinding
+
+** Queue
 
 A *queue* is a first-in-first-out (FIFO) sequential data structure.
 
-*** Tree 
-*** hash table
-*** binary search tree
-*** red-black tree
-*** interval (segment) tree
-*** b-tree
-*** disjoint set
-*** graph
+* Tree 
+
+** Binary Tree
+
+Tree traversal:
+
+    - preorder
+    - inorder
+    - postorder
+
+*** Huffman coding 
+
+** Binary Search Tree
+
+** Balanced Binary Search Tree
+
+** AVL Tree
+
+** Red-black Tree
+
+** Interval (Segment) Tree
+
+** B-Tree
+
+* Heap (Priority Queue)
+
+* Dictionary
+
+** Skip List
+
+** Hash Table
+
+* Disjoint Set
+
+* Graph
+
+** Forward Star Representaton
+
     1. BFS, DFS
     2. topological sort
     3. strongly connected component
@@ -88,10 +123,3 @@ A *queue* is a first-in-first-out (FIFO) sequential data structure.
         - Johnson's algorithm for sparse graph
     7. maximum flow
     8. bipartite matching
-*** greedy algorithm
-*** dynamic programming
-*** Fast Fourier Transformation
-*** string matching
-    1. Rabin-Karp algorithm
-    2. automata
-    3. KMP
